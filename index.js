@@ -21,9 +21,9 @@ connectDB().then(() => {
     console.log("Error while starting the app", err)
 })
 
-const corsOptions = {origin: true, credentials: true}
-
+const corsOptions = { origin: "*",credentials: true}
 app.use(cors(corsOptions))
+
 // app.options("*", cors(corsOptions))
 
 app.use(express.json())
