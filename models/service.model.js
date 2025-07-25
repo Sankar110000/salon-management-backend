@@ -15,7 +15,6 @@ const serviceSchema = new mongoose.Schema({
     staff: {
         type:mongoose.Schema.Types.ObjectId,
         ref:"Staff",
-        required: true,
     },
 })
 
