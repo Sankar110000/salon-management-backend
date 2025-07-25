@@ -7,6 +7,7 @@ const connectDB = require('./config/dbConnect');
 const userRouter = require('./routes/userRoutes');
 const serviceRouter = require('./routes/serviceRoutes')
 const staffRouter = require('./routes/staffRoutes')
+const appointmentRouter = require('./routes/appointmentRoutes')
 
 const app = express()
 
@@ -21,13 +22,14 @@ connectDB().then(() => {
 })
 
 
-app.use(cors({origin: ['http://localhost:5173', 'https://salon-management-backend-7fzr.onrender.com/'], credentials: true}))
+app.use(cors({credentials: true}))
 app.use(express.json())
 app.use(cookieParser())
 
 app.use("/api/user",userRouter)
 app.use("/api/service",serviceRouter)
 app.use("/api/staff",staffRouter)
+app.use("/api/appointment",appointmentRouter)
 
 app.get('/test', (req, res) => {
     res.send('working')
