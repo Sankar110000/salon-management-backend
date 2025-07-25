@@ -21,8 +21,11 @@ connectDB().then(() => {
     console.log("Error while starting the app", err)
 })
 
+const corsOptions = {origin: true, credentials: true}
 
-app.use(cors({credentials: true}))
+app.use(cors(corsOptions))
+// app.options("*", cors(corsOptions))
+
 app.use(express.json())
 app.use(cookieParser())
 
@@ -30,6 +33,7 @@ app.use("/api/user",userRouter)
 app.use("/api/service",serviceRouter)
 app.use("/api/staff",staffRouter)
 app.use("/api/appointment",appointmentRouter)
+
 
 app.get('/test', (req, res) => {
     res.send('working')
