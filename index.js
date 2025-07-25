@@ -21,10 +21,18 @@ connectDB().then(() => {
     console.log("Error while starting the app", err)
 })
 
-const corsOptions = { origin: "*",credentials: true}
-app.use(cors(corsOptions))
+const allowedOrigin = 'http://localhost:5173';
 
-// app.options("*", cors(corsOptions))
+app.use(cors({
+  origin: allowedOrigin,
+  credentials: true,
+}));
+
+// Optional: handle preflight OPTIONS requests
+// app.options('*', cors({
+//   origin: allowedOrigin,
+//   credentials: true,
+// }));
 
 app.use(express.json())
 app.use(cookieParser())
