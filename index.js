@@ -17,7 +17,7 @@ connectDB().then(() => {
 })
 
 
-app.use(cors({origin: 'http://localhost:5173', credentials: true}))
+app.use(cors({origin: ['http://localhost:5173', 'https://salon-management-backend-7fzr.onrender.com/'], credentials: true}))
 
 app.get('/test', (req, res) => {
     res.send('working')
