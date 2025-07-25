@@ -1,5 +1,5 @@
 const Service = require("../models/service.model")
-const Staff = require("../models/Staff.model")
+const Staff = require("../models/staff.model")
 
 exports.createService = async(req, res) => {
     try {
