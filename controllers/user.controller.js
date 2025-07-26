@@ -87,6 +87,8 @@ exports.loginUser = async (req, res) => {
         maxAge: 86400000
       });
 
+      localStorage.setItem("token", token)
+
       return res.json({
         success: true,
         message: "Login successful",

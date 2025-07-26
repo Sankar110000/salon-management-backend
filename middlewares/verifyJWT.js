@@ -2,7 +2,12 @@ const jwt = require("jsonwebtoken");
 
 exports.verifyJWT = async (req, res, next) => {
   try {
-    const { token } = req.cookies;
+    let { token } = req.cookies;
+    if(!token){
+      console.log("Toke cookies not found")
+      token = localStorage.getItem("token")
+      console.log(token)
+    }
     await jwt.verify(token, process.env.TOKEN_SECRET, (err, decoded) => {
       if (err) {
         return res.json({
