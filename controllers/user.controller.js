@@ -90,6 +90,7 @@ exports.loginUser = async (req, res) => {
           _id: existingUser._id,
           usernname: existingUser.username,
           email: existingUser.email,
+          role: existingUser.role
         },
       });
     });
