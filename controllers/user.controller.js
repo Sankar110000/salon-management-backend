@@ -27,7 +27,7 @@ exports.registerUser = async (req, res) => {
         email,
         password: hash,
         role,
-        phoneNo
+        phoneNo,
       });
 
       const savedUser = await newUser.save();
@@ -83,19 +83,26 @@ exports.loginUser = async (req, res) => {
         { expiresIn: "1d" }
       );
 
-      return res.cookie("token", token, {maxAge: 86400000, sameSite: "None"}).json({
+      res.cookie("token", token, {
+        httpOnly: true,
+        maxAge: 86400000,
+        secure: true, // ✅ Required
+        sameSite: "None",
+      });
+
+      return res.json({
         success: true,
         message: "Login successful",
         user: {
           _id: existingUser._id,
           usernname: existingUser.username,
           email: existingUser.email,
-          role: existingUser.role
+          role: existingUser.role,
         },
       });
     });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return res.json({
       success: false,
       message: "Error while logggin in the user",
@@ -105,30 +112,30 @@ exports.loginUser = async (req, res) => {
 
 exports.logoutUser = async (req, res) => {
   try {
-    res.clearCookie('token').json({
+    res.clearCookie("token").json({
       success: false,
-      message: "Logout successful"
-    })
+      message: "Logout successful",
+    });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return res.json({
       success: false,
-      message: "Error while loggingout user"
-    })
+      message: "Error while loggingout user",
+    });
   }
-}
+};
 
-exports.getloggedInUser = async(req, res) => {
+exports.getloggedInUser = async (req, res) => {
   try {
     return res.json({
       success: true,
-      user:req.user
+      user: req.user,
     });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     return res.json({
       success: false,
       message: "Error while getting the user",
     });
   }
-}
+};
