@@ -27,7 +27,7 @@ connectDB().then(() => {
 
 const allowedOrigins = ['http://localhost:5173', 'https://salon-bliss.netlify.app'];
 
-app.use(cors({origin: allowedOrigins}));
+app.use(cors({origin: allowedOrigins, credentials: true}));
 
 
 app.use(express.json())
