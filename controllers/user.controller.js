@@ -84,6 +84,7 @@ exports.loginUser = async (req, res) => {
       );
 
       res.cookie("token", token, {
+        secure: true,
         maxAge: 86400000,
         sameSite: "None"
       });
