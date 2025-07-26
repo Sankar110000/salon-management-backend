@@ -83,7 +83,7 @@ exports.loginUser = async (req, res) => {
         { expiresIn: "1d" }
       );
 
-      return res.cookie("token", token, {maxAge: 86400000}).json({
+      return res.cookie("token", token, {maxAge: 86400000, sameSite: "Lax"}).json({
         success: true,
         message: "Login successful",
         user: {
@@ -95,6 +95,7 @@ exports.loginUser = async (req, res) => {
       });
     });
   } catch (error) {
+    console.log(error)
     return res.json({
       success: false,
       message: "Error while logggin in the user",
