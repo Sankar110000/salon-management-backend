@@ -8,6 +8,10 @@ const serviceSchema = new mongoose.Schema({
     description: {
         type:String,
     },
+    duration:{
+        type:Date,
+        required: true
+    },
     price: {
         type:Number,
         required: true

@@ -16,12 +16,19 @@ const appointmentSchema = new mongoose.Schema({
         ref: "Staff",
         required: true
     },
+    date:{
+        type: Date,
+        require:true
+    },
+    specialInstructions:{
+        type: String
+    },
     status: {
         type:String,
         required: true,
         default: "booked"
     },
-}, {timestamps: true})
+})
 
 const Appointment = mongoose.model('Appointment', appointmentSchema)
 

@@ -10,7 +10,6 @@ exports.verifyJWT = async (req, res, next) => {
           message: "jsonwebtoken error",
         });
       }
-      console.log(decoded)
       req.user = decoded
       next()
     });
