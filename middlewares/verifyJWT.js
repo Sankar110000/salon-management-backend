@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 
 exports.verifyJWT = async (req, res, next) => {
   try {
-    let { token } = req.cookies;
+    let { token } = req.cookies || req.headers.authorization.replace("Bearer ", "");
     await jwt.verify(token, process.env.TOKEN_SECRET, (err, decoded) => {
       if (err) {
         return res.json({
