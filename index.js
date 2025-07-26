@@ -25,7 +25,7 @@ connectDB().then(() => {
     console.log("Error while starting the app", err)
 })
 
-const allowedOrigin = 'http://localhost:5173';
+const allowedOrigin = ['http://localhost:5173', 'https://salon-bliss.netlify.app/'];
 
 app.use(cors({
   origin: allowedOrigin,
