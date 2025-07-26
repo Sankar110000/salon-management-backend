@@ -98,6 +98,7 @@ exports.loginUser = async (req, res) => {
           email: existingUser.email,
           role: existingUser.role,
         },
+        token
       });
     });
   } catch (error) {
