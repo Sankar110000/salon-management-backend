@@ -118,7 +118,6 @@ exports.logoutUser = async (req, res) => {
 
 exports.getloggedInUser = async(req, res) => {
   try {
-    console.log(req.user)
     return res.json({
       success: true,
       user:req.user
