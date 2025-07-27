@@ -33,3 +33,18 @@ exports.addStaff = async(req, res) => {
         })
     }
 }
+
+exports.getAllStaffs = async(req, res) => {
+    try {
+        const allStaffs = await Staff.find();
+        return res.json({
+            success: true,
+            allStaffs
+        })
+    } catch (error) {
+        return res.json({
+            success: false,
+            message: "Error while getting the staffs"
+        })
+    }
+}
