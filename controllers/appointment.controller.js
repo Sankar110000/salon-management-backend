@@ -20,7 +20,7 @@ exports.createAppointment = async (req, res) => {
 
     const savedAppointment = await newAppointment.save();
 
-    const updatedUser = await User.findByIdAndUpdate(req.user._id, {$push: {appointments: savedAppointment}})
+    const updatedUser = await User.findByIdAndUpdate(req.user._id, {$push: {appointments: savedAppointment}}, {new: true})
 
     return res.json({
       success: true,
@@ -59,3 +59,26 @@ exports.getAllAppointments = async (req, res) => {
     });
   }
 };
+
+exports.getUserAppointments = async(req, res) => {
+  try {
+    const loggedInUser = req.user;
+    const user = await User.findById(loggedInUser._id).populate({path:'appointments', populate: {path: ["service", "staff", "user"]}})
+    if(!user){
+      return res.json({
+        success:false,
+        message: "User not found"
+      })
+    }
+    return res.json({
+      success:true,
+      appointments: user.appointments
+    })
+  } catch (error) {
+    console.log(error)
+    return res.json({
+      success: false,
+      message: "Error while getting user appointments"
+    })
+  }
+}
