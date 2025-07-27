@@ -5,6 +5,7 @@ exports.verifyJWT = async (req, res, next) => {
     let token = req.headers?.authorization?.replace("Bearer ", "") || req.cookies.token;
     await jwt.verify(token, process.env.TOKEN_SECRET, (err, decoded) => {
       if (err) {
+        console.log(err)
         return res.json({
           success: false,
           message: "jsonwebtoken error",

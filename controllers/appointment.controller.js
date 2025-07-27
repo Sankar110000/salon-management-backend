@@ -20,10 +20,13 @@ exports.createAppointment = async (req, res) => {
 
     const savedAppointment = await newAppointment.save();
 
+    const updatedUser = await User.findByIdAndUpdate(req.user._id, {$push: {appointments: savedAppointment}})
+
     return res.json({
       success: true,
       message: "Appointment created",
       savedAppointment,
+      updatedUser
     });
   } catch (error) {
     console.log(error);
