@@ -9,12 +9,13 @@ exports.createAppointment = async (req, res) => {
       message: "Admin cant create an appointment",
     });
     }
-    const { serviceID, staffID, date, specialInstructions } = req.body;
+    const { serviceID, staffID, date, specialInstructions, time } = req.body;
 
     const newAppointment = new Appointment({
       user: req.user._id,
       service: serviceID,
       staff: staffID || null,
+      time
     });
 
     const savedAppointment = await newAppointment.save();

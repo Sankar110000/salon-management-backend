@@ -3,14 +3,15 @@ const Staff = require("../models/staff.model")
 
 exports.createService = async(req, res) => {
     try {
-        const {title, description, price, staffID} = req.body
+        const {title, description, price, staff, duration} = req.body
 
 
         const newService = new Service({
             title,
             description,
             price,
-            staff: staffID
+            duration,
+            staff,
         })
 
         const savedService = await newService.save();
