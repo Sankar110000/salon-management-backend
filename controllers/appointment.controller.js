@@ -82,3 +82,38 @@ exports.getUserAppointments = async(req, res) => {
     })
   }
 }
+
+exports.cancelAppointment = async(req, res) => {
+  try {
+    const {appointmentID} = req.body;
+    const deletedAppointment = await Appointment.findByIdAndDelete(appointmentID)
+    await User.findByIdAndUpdate(req.user?._id, {$pull: {appointments: deletedAppointment}})
+    return res.json({
+      success:false,
+      message: "Booking canceled"
+    })
+  } catch (error) {
+    console.log(error)
+    return res.send({
+      success: false,
+      message: "ErError while canceling an appointment"
+    })
+  }
+} 
+
+exports.changeAppointmentStatus = async(req, res) => {
+  try {
+    const {appointmentID, status} = req.body;
+    await Appointment.findByIdAndUpdate(appointmentID, {status})
+    return res.json({
+      success: true,
+      message: "Status changed successfully"
+    })
+  } catch (error) {
+    console.log(error)
+    return res.json({
+      success: false,
+      message: "Error while changing the status"
+    })
+  }
+}

@@ -12,6 +12,7 @@ const User = require('./models/user.model')
 const Service = require('./models/service.model')
 const Staff = require('./models/staff.model')
 const Appointment = require('./models/appointment.model')
+const adminRouter = require('./routes/adminRoutes')
 
 const app = express()
 
@@ -39,6 +40,7 @@ app.use("/api/user",userRouter)
 app.use("/api/service",serviceRouter)
 app.use("/api/staff",staffRouter)
 app.use("/api/appointment",appointmentRouter)
+app.use("/api/admin",adminRouter)
 
 
 app.get('/test', (req, res) => {

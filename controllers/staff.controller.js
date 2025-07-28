@@ -48,3 +48,21 @@ exports.getAllStaffs = async(req, res) => {
         })
     }
 }
+
+exports.deleteStaff = async(req, res) => {
+    try {
+        const {staffID} = req.body;
+        await Staff.findByIdAndDelete(staffID)
+        return res.json({
+            message: "Staff deleted successfully",
+            success: false
+        })
+        re
+    } catch (error) {
+        console.log(error)
+        return res.json({
+            success: false,
+            message: "Error while deleting staff"
+        })
+    }
+}
