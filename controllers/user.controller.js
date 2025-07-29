@@ -1,6 +1,7 @@
 const User = require("../models/user.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const Service = require("../models/service.model");
 
 exports.registerUser = async (req, res) => {
   try {
@@ -139,3 +140,22 @@ exports.getloggedInUser = async (req, res) => {
     });
   }
 };
+
+
+exports.getDetails = async (req, res) => {
+  try {
+    const availableServices = await Service.countDocuments();
+    const appointmentCount = await User.findById(req.user._id)
+    return  res.json({
+      success:true,
+      availableServices,
+      appointmentCount: appointmentCount.appointments.length
+    })
+  } catch (error) {
+    console.log(error)
+    return res.json({
+      success: false,
+      message: "Error while getting the deatils"
+    })
+  }
+}
