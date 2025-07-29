@@ -11,7 +11,7 @@ const staffSchema = new mongoose.Schema({
     },
     image: {
         type: String,
-        default: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?cs=srgb&dl=pexels-pixabay-220453.jpg&fm=jpg"
+        default: "https://cdn-icons-png.flaticon.com/512/9187/9187604.png"
     },
     phone: {
         type: Number,

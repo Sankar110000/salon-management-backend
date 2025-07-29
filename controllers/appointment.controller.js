@@ -88,7 +88,7 @@ exports.cancelAppointment = async(req, res) => {
   try {
     const {appointmentID} = req.body;
     const deletedAppointment = await Appointment.findByIdAndDelete(appointmentID)
-    await User.findByIdAndUpdate(req.user?._id, {$pull: {appointments: deletedAppointment}})
+    await User.findByIdAndUpdate(req.user?._id, {$pull: {appointments: deletedAppointment._id}})
     return res.json({
       success:false,
       message: "Booking canceled"
