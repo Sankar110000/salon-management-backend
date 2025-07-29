@@ -4,8 +4,6 @@ const Staff = require("../models/staff.model")
 exports.createService = async(req, res) => {
     try {
         const {title, description, price, staff, duration} = req.body
-        console.log(req.body)
-
         const newService = new Service({
             title,
             description,
@@ -81,7 +79,6 @@ exports.updateService = async(req, res) => {
 exports.getAllService = async (req, res) => {
     try {
         const allServices = await Service.find().populate('staff')
-        console.log(allServices)
         return res.json({
             success: true,
             allServices
