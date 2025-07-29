@@ -15,6 +15,7 @@ exports.createAppointment = async (req, res) => {
       user: req.user._id,
       service: serviceID,
       staff: staffID || null,
+      date,
       time
     });
 

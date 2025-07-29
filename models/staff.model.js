@@ -11,7 +11,11 @@ const staffSchema = new mongoose.Schema({
     },
     image: {
         type: String,
-        default: ""
+        default: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?cs=srgb&dl=pexels-pixabay-220453.jpg&fm=jpg"
+    },
+    phone: {
+        type: Number,
+        required: true
     },
     role: {
         type:String,

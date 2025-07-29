@@ -52,6 +52,32 @@ exports.deleteService = async(req, res) => {
     }
 }
 
+exports.updateService = async(req, res) => {
+    try {
+        const {_id, title, description, duration, price, staff} = req.body;
+        const updatedService = await Service.findByIdAndUpdate(_id, {
+            title,
+            description,
+            duration,
+            price,
+            staff
+        }, {new: true});
+
+        return res.json({
+            success: true,
+            message: "Service updated successfully",
+            updatedService
+        })
+
+    } catch (error) {
+        console.log(error)
+        return res.json({
+            success:false,
+            message: "Error while editing the service"
+        })
+    }
+}
+
 exports.getAllService = async (req, res) => {
     try {
         const allServices = await Service.find().populate('staff')
