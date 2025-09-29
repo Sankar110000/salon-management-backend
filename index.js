@@ -33,8 +33,8 @@ app.use(cors({
   credentials: true,
 }));
 
-app.use(express.json())
 app.use(cookieParser())
+app.use(express.json())
 
 app.use("/api/user",userRouter)
 app.use("/api/service",serviceRouter)
@@ -44,6 +44,7 @@ app.use("/api/admin",adminRouter)
 
 
 app.get('/test', (req, res) => {
+    console.log(req.cookies)
     res.send('working')
 })
 
